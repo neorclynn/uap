@@ -5,7 +5,7 @@
     <artifactId>uap</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
-    <name>neo Maven Webapp</name>
+    <name>Universal Application Platform</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -58,10 +58,9 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.2.1.RELEASE</version>
         </dependency>
     </dependencies>
 

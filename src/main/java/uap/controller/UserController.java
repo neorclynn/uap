@@ -10,11 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import uap.bo.UserBo;
 import uap.domain.User;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
     @Autowired
     private UserBo userBo;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> findAllUsers() {
+        return new ResponseEntity<List<User>>(userBo.findAllUsers(), HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable("username") String username) {
