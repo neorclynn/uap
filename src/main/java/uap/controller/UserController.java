@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private UserBo userBo;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping( method = RequestMethod.GET)
     public ResponseEntity<List<User>> findAllUsers() {
         return new ResponseEntity<List<User>>(userBo.findAllUsers(), HttpStatus.OK);
     }
@@ -26,5 +26,15 @@ public class UserController {
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable("username") String username) {
         return new ResponseEntity<User>(userBo.getUser(username), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity addUser() {
+        User user = new User();
+        user.setUsername("newAdded");
+        user.setStatus("I");
+        userBo.addUser(user);
+
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

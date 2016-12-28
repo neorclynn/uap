@@ -1,6 +1,5 @@
 package uap.config;
 
-import com.mysql.jdbc.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -19,9 +18,9 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class PersistenceConfig {
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws ClassNotFoundException {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-        dataSource.setDriverClass(Driver.class);
+        dataSource.setDriverClass((Class<? extends java.sql.Driver>) Class.forName("com.mysql.cj.jdbc.Driver"));
         dataSource.setUsername("uap");
         dataSource.setUrl("jdbc:mysql://localhost:3306/uap");
         dataSource.setPassword("uap");
@@ -29,7 +28,7 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public EntityManagerFactory entityManagerFactory() {
+    public EntityManagerFactory entityManagerFactory() throws ClassNotFoundException {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
@@ -41,7 +40,7 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager() throws ClassNotFoundException {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory());
         return txManager;
