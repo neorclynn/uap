@@ -5,7 +5,9 @@ import uap.domain.User;
 import java.util.List;
 
 public interface UserBo {
-    List<User> findAll();
+    User getUser(String username);
 
-    List<User> findByUsername(String username);
+    void addUser(User user);
+
+    List<User> findAllUsers();
 }
