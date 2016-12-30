@@ -1,9 +1,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="uap.dao.UserDao">
+<mapper namespace="uap.persistence.UserRepository">
 
 
-    <select id="getUser" resultType="uap.dao.po.SysUserPo">
+    <select id="getUser" resultType="uap.persistence.po.SysUserPo">
         SELECT username, status
         FROM sys_user
         WHERE username = #{username}

@@ -1,5 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" isELIgnored="false"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-    sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+<c:out value="${a}" />
+    <c:forEach items="${users}" var="user">
+        <c:out value="${user.username}" />
+    </c:forEach>
 </body>
 </html>

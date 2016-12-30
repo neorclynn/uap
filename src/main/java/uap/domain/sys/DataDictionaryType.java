@@ -1,4 +1,4 @@
-package uap.domain;
+package uap.domain.sys;
 
 import javax.persistence.*;
 import java.io.Serializable;

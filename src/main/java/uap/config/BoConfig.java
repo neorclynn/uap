@@ -5,5 +5,5 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "uap.bo")
-public class BusinessConfig {
+public class BoConfig {
 }

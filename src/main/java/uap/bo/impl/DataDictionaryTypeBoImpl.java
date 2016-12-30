@@ -2,10 +2,9 @@ package uap.bo.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.stereotype.Service;
 import uap.bo.DataDictionaryTypeBo;
-import uap.dao.DataDictionaryTypeDao;
-import uap.domain.DataDictionaryType;
+import uap.persistence.DataDictionaryTypeDao;
+import uap.domain.sys.DataDictionaryType;
 
 import java.util.ArrayList;
 import java.util.List;

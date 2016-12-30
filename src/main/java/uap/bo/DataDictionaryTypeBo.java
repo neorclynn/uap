@@ -1,6 +1,6 @@
 package uap.bo;
 
-import uap.domain.DataDictionaryType;
+import uap.domain.sys.DataDictionaryType;
 
 import java.util.List;
 

@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+
 <div id="logo">
     <h1>
         <a href="#">Serious Face</a>
@@ -9,10 +12,10 @@
             <a href="#">Home</a>
         </li>
         <li>
-            <a href="#">Services</a>
+            <a href="<c:url value="/user" />">User</a>
         </li>
         <li>
-            <a href="#">Our Clients</a>
+            <a href="<c:url value="/user/register" />">Register</a>
         </li>
         <li>
             <a href="#">Support</a>

@@ -1,4 +1,4 @@
-package uap.dao;
+package uap.persistence;
 
 import java.util.List;
 import java.util.Map;

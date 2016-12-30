@@ -35,7 +35,6 @@ public class PersistenceConfig {
         factory.setPackagesToScan("uap.domain");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
-
         return factory.getObject();
     }
 
