@@ -1,36 +1,25 @@
 package uap.domain.sys;
 
 
+import org.springframework.ldap.odm.annotations.Attribute;
+import org.springframework.ldap.odm.annotations.DnAttribute;
+import org.springframework.ldap.odm.annotations.Entry;
+import org.springframework.ldap.odm.annotations.Id;
 import uap.domain.BaseDomain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.naming.Name;
 
-@Entity
-@Table(name = "sys_user")
+@Entry(objectClasses = { "inetOrgPerson" }, base="ou=users")
 public class User extends BaseDomain {
-    @Column(name = "username", unique = true, nullable = false, length = 32)
-    @Size(min = 1)
-    private String username;
+    @Id
+    private Name id;
 
-    @Column(name = "password")
-    private String password;
+    @Attribute(name="cn")
+    private String cn;
 
-    public String getUsername() {
-        return username;
-    }
+    @Attribute(name="sn")
+    private String sn;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Attribute(name="userPassword")
+    private String userPassword;
 }

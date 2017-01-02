@@ -7,7 +7,7 @@ import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.ldap.repository.config.EnableLdapRepositories;
 
 @Configuration
-@EnableLdapRepositories("com.cazysystems.appstore.model")
+@EnableLdapRepositories
 public class LdapConfig {
     @Bean
     public LdapContextSource contextSource() {

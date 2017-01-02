@@ -15,8 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserService {
-    @Autowired
     private UserBo userBo;
+
+    public UserService(UserBo userBo) {
+        this.userBo = userBo;
+    }
 
     @RequestMapping( method = RequestMethod.GET)
     public ResponseEntity<List<User>> findAllUsers() {
@@ -25,6 +28,6 @@ public class UserService {
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     public ResponseEntity<User> getUser(@PathVariable("username") String username) {
-        return new ResponseEntity<User>(userBo.getUser(username), HttpStatus.OK);
+        return new ResponseEntity<User>(userBo.findByUsername(username), HttpStatus.OK);
     }
 }

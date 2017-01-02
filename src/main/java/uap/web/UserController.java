@@ -18,8 +18,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
     private UserBo userBo;
+
+    public UserController(UserBo userBo) {
+        this.userBo = userBo;
+    }
 
     @RequestMapping
     public String list(Model model) {
@@ -41,7 +44,7 @@ public class UserController {
             return "register";
         }
 
-        userBo.addUser(user);
+        //userBo.addUser(user);
         return "redirect:/user";
     }
 
