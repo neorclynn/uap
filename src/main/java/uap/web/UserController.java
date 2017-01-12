@@ -26,8 +26,7 @@ public class UserController {
 
     @RequestMapping
     public String list(Model model) {
-        model.addAttribute("a", "b");
-        model.addAttribute("users", userBo.findAllUsers());
+        //model.addAttribute("users", userBo.findAllUsers());
 
         return "user";
     }
@@ -44,7 +43,7 @@ public class UserController {
             return "register";
         }
 
-        //userBo.addUser(user);
+        userBo.addUser(user);
         return "redirect:/user";
     }
 

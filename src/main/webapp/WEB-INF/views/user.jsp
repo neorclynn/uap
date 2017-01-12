@@ -8,9 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<c:out value="${a}" />
-    <c:forEach items="${users}" var="user">
-        <c:out value="${user.username}" />
-    </c:forEach>
+<c:forEach items="${users}" var="user">
+    <c:out value="${user.firstName}" />
+</c:forEach>
 </body>
 </html>

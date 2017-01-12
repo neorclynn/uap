@@ -1,25 +1,46 @@
 package uap.domain.sys;
 
-
 import org.springframework.ldap.odm.annotations.Attribute;
 import org.springframework.ldap.odm.annotations.DnAttribute;
 import org.springframework.ldap.odm.annotations.Entry;
 import org.springframework.ldap.odm.annotations.Id;
-import uap.domain.BaseDomain;
 
 import javax.naming.Name;
 
-@Entry(objectClasses = { "inetOrgPerson" }, base="ou=users")
-public class User extends BaseDomain {
+@Entry(objectClasses = {"inetOrgPerson", "organizationalPerson", "person", "top"}, base = "ou=users")
+public class User {
     @Id
-    private Name id;
+    private Name uid;
 
-    @Attribute(name="cn")
-    private String cn;
+    @Attribute(name = "cn")
+    @DnAttribute("cn")
+    private String firstName;
 
-    @Attribute(name="sn")
-    private String sn;
+    @Attribute(name = "sn")
+    @DnAttribute("sn")
+    private String lastName;
 
-    @Attribute(name="userPassword")
-    private String userPassword;
+    public Name getUid() {
+        return uid;
+    }
+
+    public void setUid(Name uid) {
+        this.uid = uid;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

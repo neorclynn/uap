@@ -12,9 +12,9 @@ public class LdapConfig {
     @Bean
     public LdapContextSource contextSource() {
         LdapContextSource contextSource = new LdapContextSource();
-        contextSource.setUrl("ldap://localhost:10389");
-        contextSource.setBase("o=uap");
-        contextSource.setUserDn("uid=admin,ou=system");
+        contextSource.setUrl("ldap://localhost:389");
+        contextSource.setBase("dc=maxcrc,dc=com");
+        contextSource.setUserDn("cn=Manager,dc=maxcrc,dc=com");
         contextSource.setPassword("secret");
         return contextSource;
     }

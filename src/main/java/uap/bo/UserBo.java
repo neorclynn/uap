@@ -8,4 +8,6 @@ public interface UserBo {
     List<User> findAllUsers();
 
     User findByUsername(String username);
+
+    void addUser(User user);
 }

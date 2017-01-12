@@ -14,9 +14,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 public class HomeControllerTest {
     @Test
     public void testHomePage() throws Exception {
-        UserController controller = new UserController();
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user")).andReturn();
+        //UserController controller = new UserController();
+        //MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        //MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user")).andReturn();
 
 
         //System.out.println(MockMvcResultMatchers.model().attribute("users"));

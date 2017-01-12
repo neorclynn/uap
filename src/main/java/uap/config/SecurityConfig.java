@@ -1,8 +1,6 @@
 package uap.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
-import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,19 +8,27 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-@Import(LdapConfig.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private LdapContextSource contextSource;
+    private final LdapContextSource contextSource;
 
+    @Autowired
     public SecurityConfig(LdapContextSource contextSource) {
         this.contextSource = contextSource;
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println(contextSource.getBaseLdapPathAsString());
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.ldapAuthentication()
-                .userSearchBase("ou=users").userSearchFilter("(uid={0})")
-                .passwordCompare().passwordEncoder(new LdapShaPasswordEncoder());
+                .userDnPatterns("uid={0},ou=users," + contextSource.getBaseLdapPathAsString())
+                .groupSearchBase("ou=groups," + contextSource.getBaseLdapPathAsString())
+                .passwordCompare()
+                .passwordAttribute("userPassword")
+                .passwordEncoder(new LdapShaPasswordEncoder())
+                .and()
+                .contextSource()
+                .url(contextSource.getUrls()[0])
+                .root(contextSource.getBaseLdapPathAsString())
+                .managerDn(contextSource.getUserDn())
+                .managerPassword(contextSource.getPassword());
     }
 }

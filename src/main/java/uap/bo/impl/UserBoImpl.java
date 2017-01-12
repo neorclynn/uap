@@ -29,6 +29,10 @@ public class UserBoImpl implements UserBo {
         return ldapTemplate.findOne(LdapQueryBuilder.query().where("uid").is(username), User.class);
     }
 
+    public void addUser(User user) {
+        ldapTemplate.create(user);
+    }
+
 //    private class UserAttributesMapper implements AttributesMapper<User> {
 //        public User mapFromAttributes(Attributes attributes) throws NamingException {
 //            User user = new User();

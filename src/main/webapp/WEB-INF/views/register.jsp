@@ -19,6 +19,8 @@
 <sf:form method="POST" commandName="user">
     Username <sf:input path="username"/><sf:errors path="username" cssClass="error"/><br/>
     Password <sf:password path="password"/><sf:errors path="password" cssClass="error"/><br/>
+    First Name <sf:input path="firstName"/><sf:errors path="firstName" cssClass="error"/><br/>
+    Last Name <sf:input path="lastName"/><sf:errors path="lastName" cssClass="error"/><br/>
     <input type="submit" value="Save">
 </sf:form>
 </body>
