@@ -1,1 +1,0 @@
-UAP Copyright &copy; Neo Lynn

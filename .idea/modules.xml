@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/uap.iml" filepath="$PROJECT_DIR$/uap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uap-auth/uap-auth.iml" filepath="$PROJECT_DIR$/uap-auth/uap-auth.iml" />
     </modules>
   </component>
 </project>

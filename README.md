@@ -1,2 +1,0 @@
-# uap
-Universal Application Platform

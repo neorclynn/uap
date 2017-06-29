@@ -1,0 +1,20 @@
+datasource:
+  driverClassName: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://192.168.210.2:3306/pigeon?serverTimezone=CST
+  username: root
+  password: westlake123
+
+spring:
+  mail:
+    host: smtp.neusoft.com
+    port: 587
+    username: lin.mq
+    password: 11aa!!AA2
+    protocol: smtp
+    from: lin.mq@neusoft.com
+
+logging:
+  config: classpath:config/logback.xml
+
+server:
+  port: 8001

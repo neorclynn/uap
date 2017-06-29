@@ -22,11 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="uap" />
+        <module name="uap-auth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="uap" target="1.5" />
+      <module name="uap-auth" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
