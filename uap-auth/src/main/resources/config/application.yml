@@ -1,17 +1,23 @@
 datasource:
   driverClassName: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://192.168.210.2:3306/pigeon?serverTimezone=CST
-  username: root
-  password: westlake123
+  url: jdbc:mysql://localhost:3306/uap?serverTimezone=CST
+  username: uap
+  password: uap
+
+ldap:
+  url: ldap://localhost:389
+  base: dc=maxcrc,dc=com
+  userDn: cn=Manager,dc=maxcrc,dc=com
+  password: secret
 
 spring:
   mail:
     host: smtp.neusoft.com
     port: 587
-    username: lin.mq
-    password: 11aa!!AA2
+    username:
+    password:
     protocol: smtp
-    from: lin.mq@neusoft.com
+    from:
 
 logging:
   config: classpath:config/logback.xml

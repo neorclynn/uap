@@ -8,9 +8,9 @@
     </appender>    
     <appender name="baselog"    
         class="ch.qos.logback.core.rolling.RollingFileAppender">    
-        <File>D:/var/escrow/pigeon/logs/pigeon.log</File>    
+        <File>D:/var/uap/logs/pigeon.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    
-            <fileNamePattern>D:/var/escrow/pigeon/logs/pigeon.log.%d.%i</fileNamePattern>    
+            <fileNamePattern>D:/var/uap/logs/pigeon.%d.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">    
                 <!-- or whenever the file size reaches 64 MB -->    
                 <maxFileSize>64 MB</maxFileSize>    
