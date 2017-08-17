@@ -1,4 +1,4 @@
-package neo.uap.mapper;
+package neo.uap.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 

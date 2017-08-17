@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neo.uap.repository.PrivilegeMapper">
+    <resultMap id="privilegeResultMap" type="neo.uap.domain.system.Privilege">
+        <result property="method" column="method"/>
+        <result property="path" column="path"/>
+    </resultMap>
+
+    <select id="listForUser" resultMap="privilegeResultMap">
+        select p2.method, p2.path
+        from sys_user u2
+        join sys_user_role ur2 on u2.id = ur2.user_id
+        join sys_role_privilege rp2 on ur2.role_id = rp2.role_id
+        join sys_privilege p2 on rp2.privilege_id = p2.id
+        where u2.username = #{username}
+    </select>
+</mapper>

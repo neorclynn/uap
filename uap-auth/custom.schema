@@ -1,0 +1,9 @@
+attributetype ( 3.1.1.2 NAME ( 'userPasswordToken' )
+	DESC 'Password'
+	SUP name)
+	
+objectclass ( 3.2.1.1 NAME 'user'
+	DESC 'A user'
+	SUP top STRUCTURAL
+	MUST ( uid $ userPassword )
+	MAY ( userPasswordToken $ email ))

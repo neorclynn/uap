@@ -1,23 +1,24 @@
-datasource:
-  driverClassName: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/uap?serverTimezone=CST
-  username: uap
-  password: uap
-
-ldap:
-  url: ldap://localhost:389
-  base: dc=maxcrc,dc=com
-  userDn: cn=Manager,dc=maxcrc,dc=com
-  password: secret
-
 spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/uap?serverTimezone=CST
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: uap
+    password: uap
+
+  ldap:
+    urls: ldap://localhost:389
+    base: dc=maxcrc,dc=com
+    username: cn=Manager,${spring.ldap.base}
+    password: secret
+    user-dn-pattern: cn={0},ou=users,${spring.ldap.base}
+    group-search-base: ou=groups,${spring.ldap.base}
+
   mail:
     host: smtp.neusoft.com
     port: 587
-    username:
-    password:
+    username: lin.mq
+    password: 11aa!!AA2
     protocol: smtp
-    from:
 
 logging:
   config: classpath:config/logback.xml
