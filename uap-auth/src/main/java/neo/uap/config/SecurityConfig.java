@@ -16,19 +16,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private CustomizedUserDetailsService userDetailsService;
+    private AppUserDetailsService userDetailsService;
 
-    @Autowired
-    private LdapTemplate ldapTemplate;
+    //@Autowired
+    //private LdapTemplate ldapTemplate;
 
-    @Value("${spring.ldap.user-dn-pattern}")
-    private String ldapUserDnPattern;
+    //@Value("${spring.ldap.user-dn-pattern}")
+    //private String ldapUserDnPattern;
 
-    @Value("${spring.ldap.group-search-base}")
-    private String ldapGroupSearchBase;
+    //@Value("${spring.ldap.group-search-base}")
+    //private String ldapGroupSearchBase;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,22 +36,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        LdapContextSource ldapContextSource = (LdapContextSource) ldapTemplate.getContextSource();
+        //LdapContextSource ldapContextSource = (LdapContextSource) ldapTemplate.getContextSource();
 
-        auth.ldapAuthentication()
-                .userDnPatterns(ldapUserDnPattern)
-                .groupSearchBase(ldapGroupSearchBase)
-                .passwordCompare()
-                .passwordAttribute("userPassword")
-                .and()
-                .passwordEncoder(passwordEncoder())
-                .contextSource()
-                .url(ldapContextSource.getUrls()[0])
-                .root(ldapContextSource.getBaseLdapPathAsString())
-                .managerDn(ldapContextSource.getUserDn())
-                .managerPassword(ldapContextSource.getPassword());
+        //auth.ldapAuthentication()
+                //.userDnPatterns(ldapUserDnPattern)
+                //.groupSearchBase(ldapGroupSearchBase)
+                //.passwordCompare()
+                //.passwordAttribute("userPassword")
+                //.and()
+                //.passwordEncoder(passwordEncoder())
+                //.contextSource()
+                //.url(ldapContextSource.getUrls()[0])
+                //.root(ldapContextSource.getBaseLdapPathAsString())
+                //.managerDn(ldapContextSource.getUserDn())
+                //.managerPassword(ldapContextSource.getPassword());
 
-        //auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService)/*.passwordEncoder(passwordEncoder())*/;
     }
 
     @Override

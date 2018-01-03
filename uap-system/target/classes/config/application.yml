@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/uap
+    username: uap
+    password: uap
+  jpa:
+      show-sql: true
+
+services:
+  auth:
+    host: http://localhost
+    port: 8001
+    client-id: clientIdPassword
+    secret: secret
+    endpoints:
+      check-token: oauth/check_token
+      revoke-token: oauth/revoke-token
+
+logging:
+  config: classpath:config/logback.xml
+
+server:
+  port: 8002

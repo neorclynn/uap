@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neo.uap.mapper.DataDictionaryMapper">
+    <resultMap id="dataDictionaryTypeResultMap" type="neo.uap.domain.system.DataDictionaryType">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="createdOn" column="created_on"/>
+        <result property="updatedBy" column="updated_by"/>
+        <result property="updatedOn" column="updated_on"/>
+    </resultMap>
+
+    <resultMap id="dataDictionaryItemResultMap" type="neo.uap.domain.system.DataDictionaryItem">
+        <id property="id" column="id"/>
+        <result property="typeId" column="type_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="value" column="value"/>
+        <result property="text" column="text"/>
+        <result property="extension1" column="extension1"/>
+        <result property="extension2" column="extension2"/>
+        <result property="extension3" column="extension3"/>
+        <result property="extension4" column="extension4"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="createdOn" column="created_on"/>
+        <result property="updatedBy" column="updated_by"/>
+        <result property="updatedOn" column="updated_on"/>
+    </resultMap>
+
+    <select id="listType" resultMap="dataDictionaryTypeResultMap">
+        select id,
+        name,
+        description,
+        created_by,
+        created_on,
+        updated_by,
+        updated_on
+        from sys_data_dictionary_type
+        <where>
+            <if test="condition.id != null">
+                and id = #{condition.id}
+            </if>
+            <if test="condition.name != null">
+                and name = #{condition.name}
+            </if>
+        </where>
+        order by name;
+    </select>
+
+    <select id="getType" resultMap="dataDictionaryTypeResultMap">
+        select id,
+        name,
+        description,
+        created_by,
+        created_on,
+        updated_by,
+        updated_on
+        from sys_data_dictionary_type
+        where id = #{id}
+    </select>
+
+    <select id="updateType">
+        update sys_data_dictionary_type
+        <set>
+            <if test="dataDictionaryType.name != null">
+                name = #{dataDictionaryType.name},
+            </if>
+            <if test="dataDictionaryType.description != null">
+                description = #{dataDictionaryType.description},
+            </if>
+            <if test="dataDictionaryType.updatedBy != null">
+                updated_by = #{dataDictionaryType.updatedBy},
+            </if>
+        </set>
+        where id = #{dataDictionaryType.id}
+    </select>
+
+    <select id="listItemByTypeName" resultMap="dataDictionaryItemResultMap">
+        select item.id,
+        item.type_id,
+        item.parent_id,
+        item.value,
+        item.text,
+        item.extension1,
+        item.extension2,
+        item.extension3,
+        item.extension4,
+        item.created_by,
+        item.created_on,
+        item.updated_by,
+        item.updated_on
+        from sys_data_dictionary_item item
+        join sys_data_dictionary_type type on item.type_id = type.id
+        where type.name = #{typeName}
+        order by seq, value
+    </select>
+
+    <select id="listItemByParentItem" resultMap="dataDictionaryItemResultMap">
+        select ddi.id,
+        ddi.type_id,
+        ddi.parent_id,
+        ddi.value,
+        ddi.text,
+        ddi.extension1,
+        ddi.extension2,
+        ddi.extension3,
+        ddi.extension4,
+        ddi.created_by,
+        ddi.created_on,
+        ddi.updated_by,
+        ddi.updated_on
+        from sys_data_dictionary_type ddtp
+        join sys_data_dictionary_type ddt on ddt.parent_type_id = ddtp.id
+        join sys_data_dictionary_item ddip on ddip.type_id = ddtp.id
+        join sys_data_dictionary_item ddi on ddi.type_id = ddt.id and ddi.parent_id = ddip.id
+        where ddtp.name = #{parentTypeName}
+        and ddt.name = #{typeName}
+        and ddip.value = #{parentValue}
+        order by ddi.seq, ddi.value
+    </select>
+
+    <insert id="addItem">
+        insert into sys_data_dictionary_item (type_id, parent_id, value, text,
+        extension1, extension2, extension3, extension4, created_by, updated_by)
+        values (#{dataDictionaryItem.typeId}, #{dataDictionaryItem.parentId},
+        #{dataDictionaryItem.value}, #{dataDictionaryItem.text},
+        #{dataDictionaryItem.extension1}, #{dataDictionaryItem.extension2}, #{dataDictionaryItem.extension3},
+        #{dataDictionaryItem.extension4}, #{dataDictionaryItem.createdBy}, #{dataDictionaryItem.createdBy})
+    </insert>
+
+    <insert id="editItem">
+        update sys_data_dictionary_item
+        <set>
+            <if test="dataDictionaryItem.parentId != null">
+                parent_id = #{dataDictionaryItem.parentId},
+            </if>
+            <if test="dataDictionaryItem.text != null">
+                text = #{dataDictionaryItem.text},
+            </if>
+            <if test="dataDictionaryItem.extension1 != null">
+                extension1 = #{dataDictionaryItem.extension1},
+            </if>
+            <if test="dataDictionaryItem.extension2 != null">
+                extension2 = #{dataDictionaryItem.extension2},
+            </if>
+            <if test="dataDictionaryItem.extension3 != null">
+                extension3 = #{dataDictionaryItem.extension3},
+            </if>
+            <if test="dataDictionaryItem.extension4 != null">
+                extension4 = #{dataDictionaryItem.extension4},
+            </if>
+            <if test="dataDictionaryItem.updatedBy != null">
+                updated_by = #{dataDictionaryType.updatedBy},
+            </if>
+        </set>
+        where id = #{dataDictionaryItem.id}
+    </insert>
+</mapper>

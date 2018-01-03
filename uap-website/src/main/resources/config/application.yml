@@ -1,0 +1,15 @@
+services:
+  auth:
+    host: http://localhost
+    port: 8001
+    client-id: clientIdPassword
+    secret: secret
+    endpoints:
+      check-token: oauth/check_token
+      revoke-token: oauth/revoke-token
+
+logging:
+  config: classpath:config/logback.xml
+
+server:
+  port: 8101

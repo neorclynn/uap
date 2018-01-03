@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+    <definition name="base.definition" template="/views/base/base.jsp">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/views/base/header.jsp"/>
+        <put-attribute name="sidebar" value="/views/base/sidebar.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/views/base/footer.jsp"/>
+    </definition>
+
+    <definition name="hello" extends="base.definition">
+        <put-attribute name="title" value="Home Page"/>
+        <put-attribute name="body" value="/views/body/home.jsp"/>
+    </definition>
+</tiles-definitions>

@@ -1,7 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/uap?serverTimezone=CST
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/uap
     username: uap
     password: uap
 
@@ -16,9 +15,12 @@ spring:
   mail:
     host: smtp.neusoft.com
     port: 587
-    username: lin.mq
-    password: 11aa!!AA2
+    username: 
+    password: 
     protocol: smtp
+    
+  jpa:
+    show-sql: true
 
 logging:
   config: classpath:config/logback.xml

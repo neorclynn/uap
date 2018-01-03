@@ -14,7 +14,7 @@
       <entry name="!?*.aj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true">
+      <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
       <profile default="false" name="Maven default annotation processors profile" enabled="true">
@@ -23,12 +23,15 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="uap-auth" />
+        <module name="uap-system" />
+        <module name="uap-website" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="uap" target="1.5" />
-      <module name="uap-auth" target="1.5" />
-      <module name="uap-system" target="1.5" />
+      <module name="uap" target="1.8" />
+      <module name="uap-auth" target="1.8" />
+      <module name="uap-system" target="1.8" />
+      <module name="uap-website" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

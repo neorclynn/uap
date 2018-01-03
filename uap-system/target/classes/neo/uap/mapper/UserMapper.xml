@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neo.uap.mapper.UserMapper">
+    <resultMap id="userResultMap" type="neo.uap.domain.system.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <!--<result property="firstName" column="first_name"/>-->
+        <!--<result property="lastName" column="last_name"/>-->
+        <!--<result property="email" column="email"/>-->
+        <result property="enabled" column="is_enabled"/>
+        <result property="passwordExpiryDate" column="password_expiry_date"/>
+        <!--<result property="passwordToken" column="password_token"/>-->
+        <!--<result property="organizationType" column="organization_type"/>-->
+        <!--<result property="organizationCorrelation" column="organization_correlation"/>-->
+        <result property="createdBy" column="created_by"/>
+        <result property="createdOn" column="created_on"/>
+        <result property="updatedBy" column="updated_by"/>
+        <result property="updatedOn" column="updated_on"/>
+    </resultMap>
+
+    <select id="list" resultMap="userResultMap">
+        select id,
+        username,
+        password,
+        first_name,
+        last_name,
+        email,
+        is_enabled,
+        password_token,
+        organization_type,
+        organization_correlation,
+        created_by,
+        created_on,
+        updated_by,
+        updated_on
+        from sys_user
+        <where>
+            <if test="condition.id != null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.username != null">
+                AND username = #{condition.username}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByUsername" resultMap="userResultMap">
+        select id,
+        username,
+        password,
+        first_name,
+        last_name,
+        email,
+        is_enabled,
+        password_token,
+        organization_type,
+        organization_correlation,
+        created_by,
+        created_on,
+        updated_by,
+        updated_on
+        from sys_user
+        where username = #{username}
+    </select>
+
+    <update id="edit">
+        update sys_user
+        set
+        <if test="user.firstName != null">first_name = #{user.firstName},</if>
+        <if test="user.lastName != null">last_name = #{user.lastName},</if>
+        <if test="user.email != null">email = #{user.email},</if>
+        <if test="user.enabled != null">is_enabled = #{user.enabled},</if>
+        updated_by = #{user.updatedBy}
+        where username = #{user.username}
+    </update>
+
+    <update id="changePassword">
+        update sys_user
+        set password = #{password.newPasswordEncoded}
+        where username = #{password.username}
+    </update>
+
+    <update id="changePasswordToken">
+        update sys_user
+        set password_token = #{password.token}
+        where username = #{password.username}
+    </update>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neo.uap.mapper.PrivilegeMapper">
+    <resultMap id="privilegeResultMap" type="neo.uap.domain.system.Privilege">
+        <id property="id" column="id"/>
+        <result property="method" column="method"/>
+        <result property="path" column="path"/>
+        <result property="authRequired" column="is_auth_required"/>
+        <result property="createdBy" column="created_by"/>
+        <result property="createdOn" column="created_on"/>
+        <result property="updatedBy" column="updated_by"/>
+        <result property="updatedOn" column="updated_on"/>
+    </resultMap>
+
+    <select id="listForUser" resultMap="privilegeResultMap">
+        <!--select p1.id, p1.method, p1.path, p1.created_by, p1.created_on, p1.updated_by, p1.updated_on-->
+        <!--from sys_user u1-->
+        <!--join sys_user_privilege up1 on u1.id = up1.user_id-->
+        <!--join sys_privilege p1 on up1.privilege_id = p1.id-->
+        <!--where u1.username = #{username}-->
+
+        <!--UNION-->
+
+        select p2.id, p2.method, p2.path, p2.created_by, p2.created_on, p2.updated_by, p2.updated_on
+        from sys_user u2
+        join sys_user_role ur2 on u2.id = ur2.user_id
+        join sys_role_privilege rp2 on ur2.role_id = rp2.role_id
+        join sys_privilege p2 on rp2.privilege_id = p2.id
+        where u2.username = #{username} or is_auth_required = false
+    </select>
+
+    <select id="list" resultMap="privilegeResultMap">
+        select id, method, path, is_auth_required, created_by, created_on, updated_by, updated_on
+        from sys_privilege
+        <where>
+            <if test="condition.authRequired != null">
+                AND is_auth_required = #{condition.authRequired}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>      
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">    
-        <encoder>    
-            <pattern>%d %p (%file:%line\)- %m%n</pattern>  
-            <charset>UTF-8</charset>   
-        </encoder>    
-    </appender>    
-    <appender name="baselog"    
-        class="ch.qos.logback.core.rolling.RollingFileAppender">    
-        <File>D:/var/uap/logs/pigeon.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">    
-            <fileNamePattern>D:/var/uap/logs/pigeon.%d.%i.log</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">    
-                <!-- or whenever the file size reaches 64 MB -->    
-                <maxFileSize>64 MB</maxFileSize>    
-            </timeBasedFileNamingAndTriggeringPolicy>    
-        </rollingPolicy>    
-        <encoder>    
-            <pattern>    
-                %d %p (%file:%line\)- %m%n  
-            </pattern>    
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %p (%file:%line\)- %m%n</pattern>
             <charset>UTF-8</charset>
-        </encoder>    
-    </appender>    
+        </encoder>
+    </appender>
+    <appender name="baselog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>D:/var/uap/logs/uap_auth.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:/var/uap/logs/uap_auth.log.%d.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 64 MB -->
+                <maxFileSize>64 MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %d %p (%file:%line\)- %m%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
     <root level="INFO">
-        <appender-ref ref="STDOUT" />    
-    </root>    
+        <appender-ref ref="STDOUT"/>
+    </root>
     <logger name="neo.uap" level="DEBUG">
-        <appender-ref ref="baselog" />    
+        <appender-ref ref="baselog"/>
     </logger>
 </configuration> 
